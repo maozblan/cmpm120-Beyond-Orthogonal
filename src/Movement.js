@@ -25,18 +25,25 @@ class Movement extends Phaser.Scene {
     }
 
     update() {
+        let playerVector = new Phaser.Math.Vector2(0, 0)
+
         // left right, a little bit of hierarchy, left takes precidence
         if (cursors.left.isDown) {
-            this.player.x -= this.PLAYER_VELOCITY
+            playerVector.x = -1
         } else if (cursors.right.isDown) {
-            this.player.x += this.PLAYER_VELOCITY
+            playerVector.x = 1
         }
 
         // up down
         if (cursors.up.isDown) {
-            this.player.y -= this.PLAYER_VELOCITY
+            playerVector.y = -1
         } else if (cursors.down.isDown) {
-            this.player.y += this.PLAYER_VELOCITY
+            playerVector.y = 1
         }
+
+        // normalize the vector to calculate the unit vector
+        playerVector.normalize()
+        this.player.x += playerVector.x * this.PLAYER_VELOCITY
+        this.player.y += playerVector.y * this.PLAYER_VELOCITY
     }
 }
