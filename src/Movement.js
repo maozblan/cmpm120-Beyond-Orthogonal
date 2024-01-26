@@ -25,6 +25,18 @@ class Movement extends Phaser.Scene {
     }
 
     update() {
+        // left right, a little bit of hierarchy, left takes precidence
+        if (cursors.left.isDown) {
+            this.player.x -= this.PLAYER_VELOCITY
+        } else if (cursors.right.isDown) {
+            this.player.x += this.PLAYER_VELOCITY
+        }
 
+        // up down
+        if (cursors.up.isDown) {
+            this.player.y -= this.PLAYER_VELOCITY
+        } else if (cursors.down.isDown) {
+            this.player.y += this.PLAYER_VELOCITY
+        }
     }
 }
