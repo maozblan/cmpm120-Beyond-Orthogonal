@@ -10,10 +10,16 @@ let config = {
     type: Phaser.AUTO,
     width: 800,
     height: 800,
-    scene: [ Movement ],
     render: {
         pixelArt: true
     },
+    physics: {
+        default: 'arcade',
+        arcade: {
+            debug: true
+        }
+    },
+    scene: [ Movement ],
 }
 
 let game = new Phaser.Game(config)
